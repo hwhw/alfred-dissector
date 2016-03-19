@@ -1,4 +1,4 @@
-p_alfred = Proto ("alfred","A.L.F.R.E.D")
+local p_alfred = Proto ("alfred","A.L.F.R.E.D")
 
 local types = {[0] = "Push Data",
 	       [1] = "Master Announcement",
@@ -78,6 +78,10 @@ function p_alfred.init()
 end
 
 -- load the udp.port table
-udp_table = DissectorTable.get("udp.port")
+local udp_table = DissectorTable.get("udp.port")
 -- register our protocol to handle udp port 0x4242
 udp_table:add(16962,p_alfred)
+
+local tcp_table = DissectorTable.get("tcp.port")
+tcp_table:add(16962,p_alfred)
+
